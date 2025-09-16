@@ -1,0 +1,22 @@
+bigscience-mt0-xl-defmodtrain_axolotl_dbnary_fi_tarkoittaa-rpenalty-1
+CohereLabs-aya-101-defmodtrain_axolotl24st_fi_tarkoittaa
+bleu
+A mean 0.055415058446964406
+Number of samples A 71
+B mean 0.0599293943854156
+Number of samples B 71
+TtestResult(statistic=-0.38737834732213566, pvalue=0.6990644080484354, df=140.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.027554045619005034, high=0.018525373742102648)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6561059230090307
+Number of samples A 71
+B mean 0.6782921743225043
+Number of samples B 71
+TtestResult(statistic=-2.496749966864459, pvalue=0.013693001139352524, df=140.0)
+TtestResult.pvalue < 0.05 -> reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.03975445448414668, high=-0.00461804814280057)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

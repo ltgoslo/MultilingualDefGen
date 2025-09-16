@@ -1,0 +1,13 @@
+/home/laks/defgen_formatted/test_axolotl24st_fi.tsv
+Unbabel/TowerInstruct-7B-v0.2
+(6725, 5)
+Example
+count    6725.000000
+mean       53.281487
+std        15.858415
+min        25.000000
+25%        42.000000
+50%        50.000000
+75%        61.000000
+max       143.000000
+Name: toks_example_len, dtype: float64

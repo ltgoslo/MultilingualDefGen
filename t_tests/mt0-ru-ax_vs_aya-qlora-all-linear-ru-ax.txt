@@ -1,0 +1,22 @@
+mt0-ru-ax
+aya-qlora-all-linear-ru-ax
+bleu
+A mean 0.05295401384710187
+Number of samples A 211
+B mean 0.06269979386447613
+Number of samples B 211
+TtestResult(statistic=-1.9441303499555753, pvalue=0.05254710972555812, df=420.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.01959932757241617, high=0.00010776753766763951)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6702704574439301
+Number of samples A 211
+B mean 0.6716330616050508
+Number of samples B 211
+TtestResult(statistic=-0.34731068891147465, pvalue=0.7285318909525003, df=420.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.009074354375448023, high=0.0063491460532067)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

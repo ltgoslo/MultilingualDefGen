@@ -1,0 +1,22 @@
+test_axolotl24st_fi-min_new_tokens-6-beam_search-Tower-rp_1
+tower-fi-axonly-test_axolotl24st_fi-min_new_tokens-6-beam_search_multinomial_sampling-Tower-rp_1
+bleu
+A mean 0.05530281727583929
+Number of samples A 71
+B mean 0.055518532970429996
+Number of samples B 71
+TtestResult(statistic=-0.019233766940811598, pvalue=0.9846820049809282, df=140.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.022389298107667908, high=0.021957866718486502)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6681008607848709
+Number of samples A 71
+B mean 0.669872741240291
+Number of samples B 71
+TtestResult(statistic=-0.2117747290649065, pvalue=0.832590774690135, df=140.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.01831352761332087, high=0.014769766702480681)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

@@ -1,0 +1,22 @@
+/home/laks/defgen_formatted/train_dbnary_de.tsv.gz
+bigscience/mt0-xl
+Def
+count    322937.000000
+mean         20.148400
+std          13.994852
+min           1.000000
+25%          11.000000
+50%          17.000000
+75%          25.000000
+max         460.000000
+Name: toks_def_len, dtype: float64(322937, 6)
+Example
+count    322937.000000
+mean         43.428514
+std          22.182412
+min           9.000000
+25%          27.000000
+50%          39.000000
+75%          54.000000
+max         534.000000
+Name: toks_example_len, dtype: float64

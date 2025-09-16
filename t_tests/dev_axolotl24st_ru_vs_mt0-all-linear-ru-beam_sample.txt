@@ -1,0 +1,22 @@
+dev_axolotl24st_ru
+mt0-all-linear-ru-beam_sample
+bleu
+A mean 0.0306536973581196
+Number of samples A 198
+B mean 0.06860723208571849
+Number of samples B 198
+TtestResult(statistic=-8.47497453399273, pvalue=4.752233815486948e-16, df=394.0)
+TtestResult.pvalue < 0.05 -> reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.04675789991804018, high=-0.029149169537157613)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6413859117835288
+Number of samples A 198
+B mean 0.6700245097981959
+Number of samples B 198
+TtestResult(statistic=-7.502330570863454, pvalue=4.2055922048016794e-13, df=394.0)
+TtestResult.pvalue < 0.05 -> reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.036143409332584975, high=-0.02113378669674937)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

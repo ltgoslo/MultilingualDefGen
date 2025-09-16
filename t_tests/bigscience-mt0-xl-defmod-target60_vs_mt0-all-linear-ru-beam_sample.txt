@@ -1,0 +1,22 @@
+bigscience-mt0-xl-defmod-target60
+mt0-all-linear-ru-beam_sample
+bleu
+A mean 0.0657957493947878
+Number of samples A 198
+B mean 0.06860723208571849
+Number of samples B 198
+TtestResult(statistic=-0.5139853793949679, pvalue=0.6075503533970422, df=394.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.013565453898074654, high=0.007942488516213271)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.671097602669185
+Number of samples A 198
+B mean 0.6700245097981959
+Number of samples B 198
+TtestResult(statistic=0.25041043254537665, pvalue=0.8024004858678113, df=394.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.0073518916564693036, high=0.009498077398447305)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

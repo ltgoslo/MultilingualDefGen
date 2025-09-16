@@ -1,0 +1,13 @@
+/home/laks/defgen_formatted/train_dbnary_de.tsv.gz
+Unbabel/TowerInstruct-7B-v0.2
+(322937, 4)
+Example
+count    322937.000000
+mean         83.257490
+std          30.895844
+min          25.000000
+25%          62.000000
+50%          78.000000
+75%          98.000000
+max         581.000000
+Name: toks_example_len, dtype: float64

@@ -1,0 +1,22 @@
+CohereLabs-aya-101-defmodtrain_dbnary_de
+test_axolotl24st_de
+bleu
+A mean 0.023921469133746126
+Number of samples A 8
+B mean 0.02247343792715404
+Number of samples B 8
+TtestResult(statistic=0.08101964507160007, pvalue=0.9365731804573421, df=14.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.036884870064974255, high=0.03978093247815843)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6596461017926534
+Number of samples A 8
+B mean 0.661232446382443
+Number of samples B 8
+TtestResult(statistic=-0.053847460958425346, pvalue=0.9578175519066172, df=14.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.06477169628644351, high=0.061599007106864154)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

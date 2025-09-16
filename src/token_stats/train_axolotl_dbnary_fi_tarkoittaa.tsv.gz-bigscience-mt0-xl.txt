@@ -1,0 +1,22 @@
+/home/laks/defgen_formatted/train_axolotl_dbnary_fi_tarkoittaa.tsv.gz
+bigscience/mt0-xl
+Def
+count    119981.000000
+mean         17.027204
+std          11.509421
+min           1.000000
+25%           9.000000
+50%          15.000000
+75%          23.000000
+max         205.000000
+Name: toks_def_len, dtype: float64(119981, 6)
+Example
+count    119981.00000
+mean         33.35754
+std          13.19517
+min           1.00000
+25%          24.00000
+50%          31.00000
+75%          40.00000
+max         216.00000
+Name: toks_example_len, dtype: float64

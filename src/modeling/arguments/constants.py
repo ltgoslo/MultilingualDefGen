@@ -1,0 +1,5 @@
+TARGET = "target"
+EXAMPLE = "example"
+DEFINITION = "definition"
+EXAMPLE_WITH_PROMPT = "example_with_prompt"
+GENERATED_DEFINITION = "generated_definition"

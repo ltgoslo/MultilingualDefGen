@@ -1,0 +1,22 @@
+test_axolotl24st_fi-min_new_tokens-6-beam_search-Tower-rp_1
+CohereLabs-aya-101-defmodtrain_axolotl24st_fi_tarkoittaa
+bleu
+A mean 0.055302817275839286
+Number of samples A 71
+B mean 0.0599293943854156
+Number of samples B 71
+TtestResult(statistic=-0.3898534873983019, pvalue=0.6972373442796442, df=140.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.028089215714523795, high=0.01883606149537117)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6681008607848709
+Number of samples A 71
+B mean 0.6782921743225043
+Number of samples B 71
+TtestResult(statistic=-1.144361909966617, pvalue=0.25442632831633183, df=140.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.027798308459561667, high=0.007415681384294721)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

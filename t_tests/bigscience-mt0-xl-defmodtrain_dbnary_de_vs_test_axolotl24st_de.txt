@@ -1,0 +1,22 @@
+bigscience-mt0-xl-defmodtrain_dbnary_de
+test_axolotl24st_de
+bleu
+A mean 0.022776513614903036
+Number of samples A 8
+B mean 0.02247343792715404
+Number of samples B 8
+TtestResult(statistic=0.018236016674400186, pvalue=0.9857079163683056, df=14.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.035342466434826185, high=0.03594861781032418)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6438245130081972
+Number of samples A 8
+B mean 0.661232446382443
+Number of samples B 8
+TtestResult(statistic=-0.7725838252937829, pvalue=0.4526151428668471, df=14.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.06573447418815659, high=0.030918607439664895)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------

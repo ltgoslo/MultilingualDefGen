@@ -1,0 +1,8 @@
+trl==0.15.2
+tokenizers==0.20.1
+pandas==2.2.0
+datasets==3.1.0
+torch==2.2.2
+transformers==4.46.1
+huggingface-hub==0.26.5
+bitsandbytes==0.45.2

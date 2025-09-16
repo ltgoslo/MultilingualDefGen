@@ -1,0 +1,22 @@
+dev_axolotl24st_ru-min_new_tokens-6-contrastive_search-Tower
+dev_axolotl24st_ru-min_new_tokens-6-greedy-Tower
+bleu
+A mean 0.0320658905089035
+Number of samples A 198
+B mean 0.02868844420372057
+Number of samples B 198
+TtestResult(statistic=1.6169658929980832, pvalue=0.10668596009332236, df=394.0)
+TtestResult.pvalue > 0.05 -> do not reject the null hypothesis of equal population means
+ConfidenceInterval(low=-0.0007290535765564774, high=0.007483946186922345)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
+bertscore
+A mean 0.6433065490019193
+Number of samples A 198
+B mean 0.6351553544967157
+Number of samples B 198
+TtestResult(statistic=2.1999986984426867, pvalue=0.028386935107581213, df=394.0)
+TtestResult.pvalue < 0.05 -> reject the null hypothesis of equal population means
+ConfidenceInterval(low=0.0008669745175323568, high=0.015435414492874902)
+ConfidenceInterval shows the range into which the difference between mean A and mean B falls
+-------------------------------------------------------------------------------------------------
