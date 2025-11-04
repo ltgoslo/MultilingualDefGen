@@ -13,6 +13,7 @@ from tqdm import tqdm
 from st_embedding import STEmbedding
 from gte_embedding import GTEEmbeddidng
 
+
 def parse_args():
     parser = argparse.ArgumentParser()
     arg = parser.add_argument

@@ -15,5 +15,17 @@ Instructions for running fine-tuning and prediction are to be found in `src/mode
 
 #### Evaluation 
 
+`src/evaluate.sh` runs mapping predicted definitions to the shared task input files, selecting a single definition for senses with many usage examples and scoring with the shared task evaluation script.
 
+```commandline
+cd src/
+./evaluate.sh <file with predicted definitions> <file with gold definitions>
+```
+It produces many files from different processing stages. Metrics' values will be in *.scores_sample.csv
 
+t-test may be run as 
+
+```
+cd src/
+python3 t_test --a <*.scores_sample.csv from the 1st model> --b <*.scores_sample.csv from the 2nd model>
+```
