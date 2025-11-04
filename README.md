@@ -29,3 +29,17 @@ t-test may be run as
 cd src/
 python3 t_test --a <*.scores_sample.csv from the 1st model> --b <*.scores_sample.csv from the 2nd model>
 ```
+
+Cite us
+
+```bibtex
+@misc{fedorova2025explainingnovelsensesusing,
+      title={Explaining novel senses using definition generation with open language models}, 
+      author={Mariia Fedorova and Andrey Kutuzov and Francesco Periti and Yves Scherrer},
+      year={2025},
+      eprint={2509.26181},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2509.26181}, 
+}
+```
