@@ -9,10 +9,11 @@
 #### Train-dev-test split
 ```bash bash/train_dev_test.sh```
 
-#### Fine-tuning
+#### Fine-tuning and Generation
+ 
+Instructions for running fine-tuning and prediction are to be found in `src/modeling`.
 
-
-### Generation / Evaluation Test
+#### Evaluation 
 
 
 
