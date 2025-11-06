@@ -1,24 +1,24 @@
-# MultilingualDefGen
+# Explaining novel senses using definition generation with open language models
 
-This repository contains the code for the paper [Explaining novel senses using definition generation with open language models](https://aclanthology.org/2025.findings-emnlp.1214/).
+This repository contains the code accompanying the paper [Explaining novel senses using definition generation with open language models](https://aclanthology.org/2025.findings-emnlp.1214/) by Mariia Fedorova, Andrey Kutuzov, Francesco Periti, and Yves Scherrer, published at EMNLP'25 Findings.
 
-We apply definition generators based on open-weights large language models to the task of creating explanations of novel senses, taking target word usages as an input. To this end, we employ the datasets from the [AXOLOTL’24 shared task](https://aclanthology.org/2024.lchange-1.8/) on explainable semantic change modeling, which features Finnish, Russian and German languages.
-We fine-tune and [provide publicly](https://huggingface.co/collections/ltg/definition-modeling) the open-source models performing higher than the best submissions of the aforementioned shared task, which employed closed proprietary LLMs. In addition, we find that encoder-decoder definition generators perform on par with their decoder-only counterparts.
+We apply definition generators based on open-weights large language models to the task of creating explanations of novel senses, taking target word usages as an input. To this end, we employ the datasets from the [AXOLOTL’24 shared task](https://github.com/ltgoslo/axolotl24_shared_task) on explainable semantic change modeling, which features Finnish, Russian and German languages.
+We fine-tune and [provide publicly open-source definition generation  models](https://huggingface.co/collections/ltg/definition-modeling) performing better than the best submissions of the aforementioned shared task, which employed closed proprietary LLMs. In addition, we find that encoder-decoder definition generators perform on par with their decoder-only counterparts.
 
-#### Download and process axolotl24_shared_task data
+## Download and process axolotl24_shared_task data
 ```bash bash/Axolotl24.sh```
 
-#### Download and process dbnary data
+## Download and process dbnary data
 ```bash bash/Dbnary.sh```
 
-#### Train-dev-test split
+## Train-dev-test split
 ```bash bash/train_dev_test.sh```
 
-#### Fine-tuning and Generation
+## Fine-tuning and Generation
  
 Instructions for running fine-tuning and prediction are to be found in `src/modeling`.
 
-#### Evaluation 
+## Evaluation 
 
 `src/evaluate.sh` runs mapping predicted definitions to the shared task input files, selecting a single definition for senses with many usage examples and scoring with the shared task evaluation script.
 
@@ -35,7 +35,7 @@ cd src/
 python3 t_test --a <*.scores_sample.csv from the 1st model> --b <*.scores_sample.csv from the 2nd model>
 ```
 
-#### Cite us
+## Citing us
 
 ```bibtex
 @inproceedings{fedorova-etal-2025-explaining,
