@@ -1,5 +1,10 @@
 # MultilingualDefGen
 
+This repository contains the code for the paper [Explaining novel senses using definition generation with open language models](https://aclanthology.org/2025.findings-emnlp.1214/).
+
+We apply definition generators based on open-weights large language models to the task of creating explanations of novel senses, taking target word usages as an input. To this end, we employ the datasets from the [AXOLOTL’24 shared task](https://aclanthology.org/2024.lchange-1.8/) on explainable semantic change modeling, which features Finnish, Russian and German languages.
+We fine-tune and [provide publicly](https://huggingface.co/collections/ltg/definition-modeling) the open-source models performing higher than the best submissions of the aforementioned shared task, which employed closed proprietary LLMs. In addition, we find that encoder-decoder definition generators perform on par with their decoder-only counterparts.
+
 #### Download and process axolotl24_shared_task data
 ```bash bash/Axolotl24.sh```
 
@@ -30,16 +35,27 @@ cd src/
 python3 t_test --a <*.scores_sample.csv from the 1st model> --b <*.scores_sample.csv from the 2nd model>
 ```
 
-Cite us
+#### Cite us
 
 ```bibtex
-@misc{fedorova2025explainingnovelsensesusing,
-      title={Explaining novel senses using definition generation with open language models}, 
-      author={Mariia Fedorova and Andrey Kutuzov and Francesco Periti and Yves Scherrer},
-      year={2025},
-      eprint={2509.26181},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2509.26181}, 
+@inproceedings{fedorova-etal-2025-explaining,
+    title = "Explaining novel senses using definition generation with open language models",
+    author = "Fedorova, Mariia  and
+      Kutuzov, Andrey  and
+      Periti, Francesco  and
+      Scherrer, Yves",
+    editor = "Christodoulopoulos, Christos  and
+      Chakraborty, Tanmoy  and
+      Rose, Carolyn  and
+      Peng, Violet",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2025",
+    month = nov,
+    year = "2025",
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.findings-emnlp.1214/",
+    pages = "22294--22302",
+    ISBN = "979-8-89176-335-7",
+    abstract = "We apply definition generators based on open-weights large language models to the task of creating explanations of novel senses, taking target word usages as an input. To this end, we employ the datasets from the AXOLOTL{'}24 shared task on explainable semantic change modeling, which features Finnish, Russian and German languages. We fine-tune and provide publicly the open-source models performing higher than the best submissions of the aforementioned shared task, which employed closed proprietary LLMs. In addition, we find that encoder-decoder definition generators perform on par with their decoder-only counterparts."
 }
 ```
