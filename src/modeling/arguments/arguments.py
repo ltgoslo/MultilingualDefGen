@@ -17,7 +17,6 @@ class ModelArguments:
         metadata={"help": "tag to be appended to the finetuned model name"},
         default="defmod"
     )
-#    cache_dir: str = field(default='~/.cache/huggingface/')
 
 @dataclass
 class DataTrainingArguments:

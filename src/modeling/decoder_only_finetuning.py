@@ -1,13 +1,13 @@
 import os
 import random
 from pathlib import Path
+
 import evaluate
 import nltk
 import numpy as np
 import pandas as pd
 import torch
 from accelerate import Accelerator, FullyShardedDataParallelPlugin
-from arguments.arguments import DataTrainingArguments, ModelArguments, PEFTArguments
 from datasets import Dataset
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from torch.distributed.fsdp.fully_sharded_data_parallel import (
@@ -25,11 +25,13 @@ from transformers import (
 )
 from trl import SFTConfig, SFTTrainer
 
+from arguments.arguments import DataTrainingArguments, ModelArguments, PEFTArguments
+
 
 def formatting_func(record):
     return {
-        "prompt": [{"role": "user", "content": record[args.context_column]}],
-        "completion": [{"role": "assistant", "content": record[args.gloss_column]}],
+        "prompt": [{"role": "user", "content": record[arguments.context_column]}],
+        "completion": [{"role": "assistant", "content": record[arguments.gloss_column]}],
     }
 
 
@@ -112,16 +114,6 @@ def train(args):
     accelerator = Accelerator(fsdp_plugin=fsdp_plugin)
 
     if args.verbose:
-        print("-- Load tokenizer --")
-    global tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(
-        args.model_name_or_path,
-        padding_side="left",
-        add_eos_token=True,
-        add_bos_token=False,
-    )
-
-    if args.verbose:
         print(f"-- Set tuning parameters [model, device, cache] --")
     settings = dict(
         pretrained_model_name_or_path=args.model_name_or_path,
@@ -176,10 +168,10 @@ def train(args):
     base_model.config.pretraining_tp = (
         1  # info: https://github.com/huggingface/transformers/pull/24906
     )
-    if not args.lora:
-        model = base_model
-    else:
+    if args.lora or args.qlora:
         model = get_peft_model(base_model, peft_config)
+    else:
+        model = base_model
     model = accelerator.prepare_model(model, device_placement=True)
 
     if args.verbose:
@@ -207,10 +199,6 @@ def train(args):
     )
     print(f"Evaluation every {num_eval_steps} steps")
 
-    response_template_with_context = "<|im_start|>assistant"
-    response_template_ids = tokenizer.encode(
-        response_template_with_context, add_special_tokens=False
-    )
     trainer_args = SFTConfig(
         output_dir=output_dir,
         logging_dir=logging_dir,
@@ -238,7 +226,6 @@ def train(args):
         metric_for_best_model="eval_rouge1",
         save_only_model=True,
         load_best_model_at_end=True,  # for EarlyStoppingCallback
-        #        eval_accumulation_steps=1,
         bf16_full_eval=True,
         eval_on_start=True,
         save_total_limit=4,
@@ -246,6 +233,7 @@ def train(args):
     )
     print(trainer_args)
 
+    # Making sure we have anything to update (important for LoRa)
     requires_grad_any = False
     for n, p in model.named_parameters():
         if p.requires_grad:
@@ -260,11 +248,12 @@ def train(args):
         eval_dataset=dev_dataset,
         processing_class=tokenizer,
         args=trainer_args,
-        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=5)],
         compute_metrics=compute_metrics,
         preprocess_logits_for_metrics=lambda logits, labels: torch.argmax(
             logits, dim=-1
-        ),  # This allows us to reduce the size of the logits stored on the GPU https://discuss.huggingface.co/t/cuda-out-of-memory-during-evaluation-but-training-is-fine/1783
+        ),
+        # This allows us to reduce the size of the logits stored on the GPU https://discuss.huggingface.co/t/cuda-out-of-memory-during-evaluation-but-training-is-fine/1783
     )
     if args.verbose:
         print(f"-- Training is started! --")
@@ -284,11 +273,20 @@ if __name__ == "__main__":
     parser.add_argument("--qlora", action="store_true")
     parser.add_argument("--lora", action="store_true")
     parser.add_argument("--verbose", action="store_true")
-    args = parser.parse_args()
+    arguments = parser.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     rouge_scorer = evaluate.load("rouge")
     bert_scorer = evaluate.load("bertscore")
 
-    train(args)
+    if arguments.verbose:
+        print("-- Load tokenizer --")
+    tokenizer = AutoTokenizer.from_pretrained(
+        arguments.model_name_or_path,
+        padding_side="left",
+        add_eos_token=True,
+        add_bos_token=False,
+    )
+
+    train(arguments)
