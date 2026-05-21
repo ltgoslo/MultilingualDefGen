@@ -113,6 +113,7 @@ def train(args):
 
     if args.verbose:
         print("-- Load tokenizer --")
+    global tokenizer
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_name_or_path,
         padding_side="left",
@@ -206,10 +207,6 @@ def train(args):
     )
     print(f"Evaluation every {num_eval_steps} steps")
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    rouge_scorer = evaluate.load("rouge")
-    bert_scorer = evaluate.load("bertscore")
     response_template_with_context = "<|im_start|>assistant"
     response_template_ids = tokenizer.encode(
         response_template_with_context, add_special_tokens=False
@@ -288,5 +285,10 @@ if __name__ == "__main__":
     parser.add_argument("--lora", action="store_true")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    rouge_scorer = evaluate.load("rouge")
+    bert_scorer = evaluate.load("bertscore")
 
     train(args)
