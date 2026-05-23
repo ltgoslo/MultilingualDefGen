@@ -132,7 +132,6 @@ def generation(args):
         )
         outputs = tokenizer.batch_decode(outputs, skip_special_tokens=True)
         outputs = [el.strip().split("\n")[-1] for el in outputs]
-        print(outputs)
         generated_definitions += outputs
     dataset_pd[GENERATED_DEFINITION] = generated_definitions
     return dataset_pd
@@ -168,7 +167,7 @@ if __name__ == "__main__":
     args.test_filename = os.path.expanduser(args.test_filename)
     print(args)
     stem = pathlib.Path(args.test_filename).stem
-    outfile = f"{args.model.split('/')[-1]}{stem}-min_new_tokens-6-{args.strategy}-rp_{args.repetition_penalty}-max_new_tokens-{args.max_new_tokens}.tsv.gz"
+    outfile = f"{args.model.split('/')[-1]}-{stem}-min_new_tokens-6-{args.strategy}-rp_{args.repetition_penalty}-max_new_tokens-{args.max_new_tokens}.tsv.gz"
     result = generation(args)
     result[[TARGET, EXAMPLE, GENERATED_DEFINITION]].to_csv(
         outfile, sep="\t", index=False, quoting=csv.QUOTE_MINIMAL
