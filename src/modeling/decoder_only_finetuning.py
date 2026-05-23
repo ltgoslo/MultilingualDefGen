@@ -9,7 +9,12 @@ import pandas as pd
 import torch
 from accelerate import Accelerator, FullyShardedDataParallelPlugin
 from datasets import Dataset
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import (
+    LoraConfig,
+    get_peft_model,
+    prepare_model_for_kbit_training,
+    AutoPeftModelForCausalLM,
+)
 from torch.distributed.fsdp.fully_sharded_data_parallel import (
     FullOptimStateDictConfig,
     FullStateDictConfig,
@@ -31,7 +36,9 @@ from arguments.arguments import DataTrainingArguments, ModelArguments, PEFTArgum
 def formatting_func(record):
     return {
         "prompt": [{"role": "user", "content": record[arguments.context_column]}],
-        "completion": [{"role": "assistant", "content": record[arguments.gloss_column]}],
+        "completion": [
+            {"role": "assistant", "content": record[arguments.gloss_column]}
+        ],
     }
 
 
@@ -248,7 +255,7 @@ def train(args):
         eval_dataset=dev_dataset,
         processing_class=tokenizer,
         args=trainer_args,
-        callbacks=[EarlyStoppingCallback(early_stopping_patience=5)],
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
         compute_metrics=compute_metrics,
         preprocess_logits_for_metrics=lambda logits, labels: torch.argmax(
             logits, dim=-1
@@ -259,9 +266,48 @@ def train(args):
         print(f"-- Training is started! --")
     trainer.train()
     trainer.model.save_pretrained(str(output_dir) + f"/final-epoch")
-    trainer.tokenizer.save_pretrained(str(output_dir) + f"/final-epoch")
-    trainer.evaluate()
-    pd.DataFrame(trainer.state.log_history).to_csv(
+    trainer.processing_class.save_pretrained(str(output_dir) + f"/final-epoch")
+
+    # Keep log history from the training trainer
+    log_history = list(trainer.state.log_history)  # copy to be safe
+
+    global_step = trainer.state.global_step
+    epoch = trainer.state.epoch
+
+    del trainer
+    torch.cuda.empty_cache()
+
+    # Now evaluating (to be safe with PEFT and multi-GPU)
+
+    eval_model = AutoPeftModelForCausalLM.from_pretrained(
+        str(output_dir) + "/final-epoch",
+        dtype=torch.bfloat16,
+    )
+
+    eval_trainer = SFTTrainer(
+        model=eval_model,
+        train_dataset=train_dataset,
+        eval_dataset=dev_dataset,
+        processing_class=tokenizer,
+        args=trainer_args,
+        compute_metrics=compute_metrics,
+        preprocess_logits_for_metrics=lambda logits, labels: torch.argmax(
+            logits, dim=-1
+        ),
+    )
+
+    final_metrics = eval_trainer.evaluate()
+
+    # Append final metrics to the old log history
+    log_history.append(
+        {
+            **{f"eval_{k}": v for k, v in final_metrics.items()},
+            "step": global_step,
+            "epoch": epoch,
+        }
+    )
+
+    pd.DataFrame(log_history).to_csv(
         str(output_dir) + f"/log.tsv", sep="\t", index=False
     )
 
